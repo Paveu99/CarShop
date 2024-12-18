@@ -1,0 +1,220 @@
+{
+    "categories": [
+        {
+            "id": "1",
+            "name": "Basic",
+            "identifier": "basic",
+            "position": 1
+        },
+        {
+            "id": "2",
+            "name": "Advanced",
+            "identifier": "advanced",
+            "position": 2
+        },
+        {
+            "id": "3",
+            "name": "Comfort",
+            "identifier": "comfort",
+            "position": 3
+        },
+        {
+            "id": "4",
+            "name": "Safety",
+            "identifier": "safety",
+            "position": 4
+        },
+        {
+            "id": "5",
+            "name": "Performance",
+            "identifier": "performance",
+            "position": 5
+        },
+        {
+            "id": "6",
+            "name": "Technology",
+            "identifier": "technology",
+            "position": 6
+        }
+    ],
+    "parts": [
+        {
+            "id": "1",
+            "name": "Opening Roof",
+            "price": 1000,
+            "partId": "opening-roof",
+            "category": "basic"
+        },
+        {
+            "id": "2",
+            "name": "Alloy Wheels",
+            "price": 1700,
+            "partId": "alloy-wheels",
+            "category": "basic"
+        },
+        {
+            "id": "3",
+            "name": "Basic Sound System",
+            "price": 700,
+            "partId": "basic-sound-system",
+            "category": "basic"
+        },
+        {
+            "id": "4",
+            "name": "Standard Paint",
+            "price": 500,
+            "partId": "standard-paint",
+            "category": "basic"
+        },
+        {
+            "id": "5",
+            "name": "Leather Seats",
+            "price": 1500,
+            "partId": "leather-seats",
+            "category": "advanced"
+        },
+        {
+            "id": "6",
+            "name": "Smart Navigation",
+            "price": 2000,
+            "partId": "smart-navigation",
+            "category": "advanced"
+        },
+        {
+            "id": "7",
+            "name": "Panoramic Roof",
+            "price": 2500,
+            "partId": "panoramic-roof",
+            "category": "advanced"
+        },
+        {
+            "id": "8",
+            "name": "Adaptive Cruise Control",
+            "price": 1800,
+            "partId": "adaptive-cruise-control",
+            "category": "advanced"
+        },
+        {
+            "id": "9",
+            "name": "Heated Seats",
+            "price": 800,
+            "partId": "heated-seats",
+            "category": "comfort"
+        },
+        {
+            "id": "10",
+            "name": "Dual-Zone Climate Control",
+            "price": 1200,
+            "partId": "dual-zone-climate",
+            "category": "comfort"
+        },
+        {
+            "id": "11",
+            "name": "Memory Foam Seats",
+            "price": 1000,
+            "partId": "memory-foam-seats",
+            "category": "comfort"
+        },
+        {
+            "id": "12",
+            "name": "Acoustic Windshield",
+            "price": 900,
+            "partId": "acoustic-windshield",
+            "category": "comfort"
+        },
+        {
+            "id": "13",
+            "name": "Backup Camera",
+            "price": 1200,
+            "partId": "backup-camera",
+            "category": "safety"
+        },
+        {
+            "id": "14",
+            "name": "Blind Spot Monitor",
+            "price": 1300,
+            "partId": "blind-spot-monitor",
+            "category": "safety"
+        },
+        {
+            "id": "15",
+            "name": "Lane Keeping Assist",
+            "price": 1500,
+            "partId": "lane-keeping-assist",
+            "category": "safety"
+        },
+        {
+            "id": "16",
+            "name": "Emergency Braking System",
+            "price": 2000,
+            "partId": "emergency-braking-system",
+            "category": "safety"
+        },
+        {
+            "id": "17",
+            "name": "Turbo Engine",
+            "price": 3000,
+            "partId": "turbo-engine",
+            "category": "performance"
+        },
+        {
+            "id": "18",
+            "name": "Sport Suspension",
+            "price": 2500,
+            "partId": "sport-suspension",
+            "category": "performance"
+        },
+        {
+            "id": "19",
+            "name": "High-Performance Brakes",
+            "price": 2700,
+            "partId": "high-performance-brakes",
+            "category": "performance"
+        },
+        {
+            "id": "20",
+            "name": "Performance Exhaust",
+            "price": 2200,
+            "partId": "performance-exhaust",
+            "category": "performance"
+        },
+        {
+            "id": "21",
+            "name": "Smartphone Integration",
+            "price": 1200,
+            "partId": "smartphone-integration",
+            "category": "technology"
+        },
+        {
+            "id": "22",
+            "name": "Wireless Charging",
+            "price": 800,
+            "partId": "wireless-charging",
+            "category": "technology"
+        },
+        {
+            "id": "23",
+            "name": "Head-Up Display",
+            "price": 2000,
+            "partId": "head-up-display",
+            "category": "technology"
+        },
+        {
+            "id": "24",
+            "name": "360-Degree Camera",
+            "price": 2500,
+            "partId": "360-degree-camera",
+            "category": "technology"
+        }
+    ],
+    "orders": [
+        {
+            "id": "1",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@example.com",
+            "value": 2500,
+            "details": "Opening Roof, Leather Seats"
+        }
+    ]
+}
