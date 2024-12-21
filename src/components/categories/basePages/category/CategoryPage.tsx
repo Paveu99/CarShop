@@ -1,8 +1,10 @@
+import { CategoriesList } from "../../lists/category/CategoriesList"
+
 export const CategoryPage = () => {
     return <>
         <div>
             <h3>Category List:</h3>
-            <div>LIST COMPONENT</div>
+            <CategoriesList />
         </div>
         <div>
             <h3>Category details:</h3>
