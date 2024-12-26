@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import infoPng from '../../../../images/info.png';
-import { List } from "@mui/material";
+import { CircularProgress, List } from "@mui/material";
 import { SingleElement } from "./SingleElement";
 import { useGetElementsQuery } from "../../../../queries/elements/useGetElementsQuery";
 
@@ -16,7 +16,17 @@ export const ElementsList = () => {
                 <p>Parts failed to fetch</p>
             </div>
         )
-    if (isLoading) return <p>Loading parts...</p>
+    if (isLoading) return <div
+        style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            marginTop: '10px',
+        }}
+    >
+        <CircularProgress />
+        <p>Loading parts...</p>
+    </div>
 
     return (
         <div>

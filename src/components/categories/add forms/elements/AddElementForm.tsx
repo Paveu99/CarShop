@@ -7,7 +7,8 @@ import { styled, css } from '@mui/system';
 import clsx from 'clsx';
 import { usePostElementMutation } from "../../../../queries/elements/usePostElementMutation";
 import { useGetElementsQuery } from "../../../../queries/elements/useGetElementsQuery";
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
+import infoPng from '../../../../images/info.png';
 
 export const AddElementForm = () => {
     const { error, isPending, isSuccess, mutate } = usePostElementMutation();
@@ -21,8 +22,8 @@ export const AddElementForm = () => {
             price: 0
         }
     });
-    const [successTriggered, setSuccessTriggered] = useState(false);
     const [open, setOpen] = useState<boolean>(false);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const inputElement = useRef<HTMLInputElement>();
 
     const onSubmit = (form: ElementDto) => {
@@ -44,17 +45,18 @@ export const AddElementForm = () => {
     };
 
     useEffect(() => {
-        if (isSuccess && !successTriggered) {
-            setSuccessTriggered(true);
+        if (isSuccess) {
+            setSuccessMessage("Successfully added!");
             reset();
-        }
-    }, [isSuccess, successTriggered, reset]);
 
-    useEffect(() => {
-        if (!isSuccess) {
-            setSuccessTriggered(false);
+            const timer = setTimeout(() => {
+                setSuccessMessage(null);
+            }, 2000);
+
+            return () => clearTimeout(timer);
         }
-    }, [isSuccess]);
+    }, [isSuccess, reset]);
+
 
     const grey = {
         50: '#F3F6F9',
@@ -128,7 +130,7 @@ export const AddElementForm = () => {
     return (
         <div>
             <form>
-                <InputLabel className={styles.inputLabel} id="name-select-label">Name:</InputLabel>
+                <InputLabel sx={{ paddingLeft: '5px', color: 'white' }} className={styles.inputLabel} id="name-select-label">Name:</InputLabel>
                 <Input
                     inputRef={inputElement}
                     placeholder="Name of the part..."
@@ -153,7 +155,7 @@ export const AddElementForm = () => {
                 />
                 {errors.name && <div>{errors.name.message}</div>}
                 <br />
-                <InputLabel className={styles.inputLabel} id="price-select-label">Price:</InputLabel>
+                <InputLabel sx={{ paddingLeft: '5px', color: 'white' }} className={styles.inputLabel} id="price-select-label">Price:</InputLabel>
                 <Input
                     style={{
                         backgroundColor: '#EBEBEB',
@@ -171,7 +173,7 @@ export const AddElementForm = () => {
                 />
                 {errors.price && <div>{errors.price.message}</div>}
                 <br />
-                <InputLabel className={styles.inputLabel} id="category-select-label">Category:</InputLabel>
+                <InputLabel sx={{ paddingLeft: '5px', color: 'white' }} className={styles.inputLabel} id="category-select-label">Category:</InputLabel>
                 <Controller
                     name="category"
                     control={control}
@@ -261,7 +263,16 @@ export const AddElementForm = () => {
                     <CircularProgress />
                     <p>Loading...</p>
                 </div>}
-                {error && <p color="red">Failed, try again!!!</p>}
+                {error && <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                    <img className={styles.infoButton} src={infoPng} />
+                    <p>Failed to add!!!</p>
+                </div>}
+                {!!successMessage && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "5px", color: "green" }}>
+                        <img className={styles.infoButton} src={infoPng} alt="info" />
+                        <p>{successMessage}</p>
+                    </div>
+                )}
             </form>
         </div>
     );

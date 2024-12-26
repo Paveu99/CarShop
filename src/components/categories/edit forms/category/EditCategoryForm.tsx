@@ -8,6 +8,7 @@ import { ExpandLess, ExpandMore, HomeRepairService } from "@mui/icons-material";
 import { useDeleteCategoryMutation } from "../../../../queries/categories/useDeleteCategoryMutation";
 import styles from './styles.module.scss';
 import clsx from 'clsx';
+import infoPng from '../../../../images/info.png';
 
 export const EditCategoryForm = () => {
 
@@ -17,6 +18,8 @@ export const EditCategoryForm = () => {
     const handleClick = () => {
         setOpen(!open);
     };
+
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const { isSuccess, mutate, isPending, error } = useDeleteCategoryMutation();
     const { chosenCategory, setChosenCategory } = useCategoryContext();
@@ -191,7 +194,10 @@ export const EditCategoryForm = () => {
                 <CircularProgress />
                 <p>Loading...</p>
             </div>}
-            {error && <p color="red">Failed, try again!!!</p>}
+            {error && <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <img className={styles.infoButton} src={infoPng} />
+                <p>Failed to edit!!!</p>
+            </div>}
         </form>
     </div>
 }

@@ -6,7 +6,8 @@ import { Button, CircularProgress, Input, InputLabel, Modal } from "@mui/materia
 import React, { useEffect, useRef, useState } from "react";
 import { styled, css } from '@mui/system';
 import clsx from 'clsx';
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
+import infoPng from '../../../../images/info.png';
 
 export const AddCategoryForm = () => {
     const { error, isPending, isSuccess, mutate } = usePostCategoryMutation();
@@ -17,7 +18,7 @@ export const AddCategoryForm = () => {
             name: ""
         }
     });
-    const [successTriggered, setSuccessTriggered] = useState(false);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [open, setOpen] = useState<boolean>(false);
     const inputElement = useRef<HTMLInputElement>();
 
@@ -39,17 +40,17 @@ export const AddCategoryForm = () => {
     };
 
     useEffect(() => {
-        if (isSuccess && !successTriggered) {
-            setSuccessTriggered(true);
+        if (isSuccess) {
+            setSuccessMessage("Successfully added!");
             reset();
-        }
-    }, [isSuccess, successTriggered, reset]);
 
-    useEffect(() => {
-        if (!isSuccess) {
-            setSuccessTriggered(false);
+            const timer = setTimeout(() => {
+                setSuccessMessage(null);
+            }, 2000);
+
+            return () => clearTimeout(timer);
         }
-    }, [isSuccess]);
+    }, [isSuccess, reset]);
 
     const grey = {
         50: '#F3F6F9',
@@ -123,7 +124,7 @@ export const AddCategoryForm = () => {
     return (
         <div>
             <form>
-                <InputLabel className={styles.inputLabel}>Name:</InputLabel>
+                <InputLabel sx={{ paddingLeft: '5px', color: 'white' }} className={styles.inputLabel}>Name:</InputLabel>
                 <Input
                     inputRef={inputElement}
                     placeholder="Name of the category..."
@@ -141,7 +142,7 @@ export const AddCategoryForm = () => {
                         minLength: { value: 3, message: "Min 3 characters required" },
                         maxLength: { value: 35, message: "Max 35 characters required" },
                         validate: (value) => {
-                            const nameExists = categories?.some(category => category.name.toLowerCase() === value.toLowerCase());
+                            const nameExists = categories?.some(category => category.name.toLowerCase().trim() === value.toLowerCase().trim());
                             return nameExists ? "A category with this name already exists" : true;
                         }
                     })}
@@ -210,7 +211,16 @@ export const AddCategoryForm = () => {
                     <CircularProgress />
                     <p>Loading...</p>
                 </div>}
-                {error && <p color="red">Failed, try again!!!</p>}
+                {error && <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                    <img className={styles.infoButton} src={infoPng} />
+                    <p>Failed to add!!!</p>
+                </div>}
+                {!!successMessage && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "5px", color: "green" }}>
+                        <img className={styles.infoButton} src={infoPng} alt="info" />
+                        <p>{successMessage}</p>
+                    </div>
+                )}
             </form>
         </div>
     );

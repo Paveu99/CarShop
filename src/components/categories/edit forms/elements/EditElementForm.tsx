@@ -9,12 +9,14 @@ import {
     styled,
     css,
 } from '@mui/material';
+import infoPng from '../../../../images/info.png';
 import { useEffect, useRef, useState } from 'react';
 import { useElementContext } from '../../../../context/useElementContext';
 import { useGetCategoriesQuery } from '../../../../queries/categories/useGetCategoriesQuery';
 import { useEditElementMutation } from '../../../../queries/elements/useEditElementMutation';
 import { Element } from '../../../../utils/types';
 import { useDeleteElementMutation } from '../../../../queries/elements/useDeleteMutation';
+import styles from './styles.module.scss'
 
 export const EditElementForm = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
@@ -22,6 +24,8 @@ export const EditElementForm = () => {
 
     const inputRef = useRef<HTMLSelectElement | null>(null);
     const [different, setDifferent] = useState<boolean>(false);
+
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const { mutate, isPending, error } = useEditElementMutation();
     const { mutate: deletePart } = useDeleteElementMutation();
@@ -33,7 +37,7 @@ export const EditElementForm = () => {
         handleSubmit,
         setValue,
         formState: { errors },
-        watch,
+        watch
     } = useForm({
         defaultValues: {
             category: '',
@@ -41,13 +45,12 @@ export const EditElementForm = () => {
     });
 
     const capitilizedCategory =
-        chosenElement &&
-        chosenElement?.category.charAt(0).toUpperCase() + chosenElement?.category.slice(1);
+        chosenElement ?
+            chosenElement?.category.charAt(0).toUpperCase() + chosenElement?.category.slice(1) :
+            '';
 
     useEffect(() => {
-        if (capitilizedCategory) {
-            setValue('category', capitilizedCategory);
-        }
+        setValue('category', capitilizedCategory);
     }, [capitilizedCategory, setValue, chosenElement]);
 
     const onDelete = () => {
@@ -75,6 +78,13 @@ export const EditElementForm = () => {
             onSuccess: () => {
                 setChosenElement(updatedElement);
                 setOpenModal(false);
+                setSuccessMessage("Successfully added!");
+
+                const timer = setTimeout(() => {
+                    setSuccessMessage(null);
+                }, 2000);
+
+                return () => clearTimeout(timer);
             }
         }
         );
@@ -270,7 +280,16 @@ export const EditElementForm = () => {
                         <p>Loading...</p>
                     </div>
                 )}
-                {error && <p style={{ color: 'red' }}>Failed, try again!!!</p>}
+                {error && <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                    <img className={styles.infoButton} src={infoPng} />
+                    <p>Failed to edit!!!</p>
+                </div>}
+                {!!successMessage && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "5px", color: "green" }}>
+                        <img className={styles.infoButton} src={infoPng} alt="info" />
+                        <p>{successMessage}</p>
+                    </div>
+                )}
             </form>
         </div>
     );

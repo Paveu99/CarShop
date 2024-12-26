@@ -2,7 +2,7 @@ import { useGetCategoriesQuery } from "../../../../queries/categories/useGetCate
 import styles from './styles.module.scss';
 import infoPng from '../../../../images/info.png';
 import { SingleCategory } from "./SingleCategory";
-import { List } from "@mui/material";
+import { CircularProgress, List } from "@mui/material";
 
 export const CategoriesList = () => {
 
@@ -15,12 +15,22 @@ export const CategoriesList = () => {
                 <p>Categories failed to fetch</p>
             </div>
         )
-    if (isLoading) return <p>Loading categories...</p>
+    if (isLoading) return <div
+        style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            marginTop: '10px',
+        }}
+    >
+        <CircularProgress />
+        <p>Loading categories...</p>
+    </div>
 
     return (
         <div>
             <List>
-                {data?.map((el, index) => (
+                {data?.filter(el => el.identifier !== '').map((el, index) => (
                     <SingleCategory
                         key={el.id}
                         index={index + 1}
