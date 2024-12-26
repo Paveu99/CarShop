@@ -23,6 +23,6 @@ export const useEditElementMutation = () => {
         mutate,
         isPending,
         error,
-        isSuccess,
+        isSuccess
     }
 }
