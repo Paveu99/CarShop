@@ -7,6 +7,7 @@ import { styled, css } from '@mui/system';
 import clsx from 'clsx';
 import { usePostElementMutation } from "../../../../queries/elements/usePostElementMutation";
 import { useGetElementsQuery } from "../../../../queries/elements/useGetElementsQuery";
+import styles from './styles.module.scss'
 
 export const AddElementForm = () => {
     const { error, isPending, isSuccess, mutate } = usePostElementMutation();
@@ -127,6 +128,7 @@ export const AddElementForm = () => {
     return (
         <div>
             <form>
+                <InputLabel className={styles.inputLabel} id="name-select-label">Name:</InputLabel>
                 <Input
                     inputRef={inputElement}
                     placeholder="Name of the part..."
@@ -151,6 +153,7 @@ export const AddElementForm = () => {
                 />
                 {errors.name && <div>{errors.name.message}</div>}
                 <br />
+                <InputLabel className={styles.inputLabel} id="price-select-label">Price:</InputLabel>
                 <Input
                     style={{
                         backgroundColor: '#EBEBEB',
@@ -168,7 +171,7 @@ export const AddElementForm = () => {
                 />
                 {errors.price && <div>{errors.price.message}</div>}
                 <br />
-                <InputLabel id="category-select-label">Category</InputLabel>
+                <InputLabel className={styles.inputLabel} id="category-select-label">Category:</InputLabel>
                 <Controller
                     name="category"
                     control={control}

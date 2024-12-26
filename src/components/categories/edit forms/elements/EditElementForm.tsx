@@ -48,7 +48,7 @@ export const EditElementForm = () => {
         if (capitilizedCategory) {
             setValue('category', capitilizedCategory);
         }
-    }, [capitilizedCategory, setValue]);
+    }, [capitilizedCategory, setValue, chosenElement]);
 
     const onDelete = () => {
         if (!chosenElement) return;

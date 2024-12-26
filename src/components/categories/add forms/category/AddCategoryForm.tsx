@@ -2,10 +2,11 @@ import { useForm } from "react-hook-form";
 import { usePostCategoryMutation } from "../../../../queries/categories/usePostCategoryMutation";
 import { CategoryDto } from "../../../../utils/types";
 import { useGetCategoriesQuery } from "../../../../queries/categories/useGetCategoriesQuery";
-import { Button, CircularProgress, Input, Modal } from "@mui/material";
+import { Button, CircularProgress, Input, InputLabel, Modal } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { styled, css } from '@mui/system';
 import clsx from 'clsx';
+import styles from './styles.module.scss'
 
 export const AddCategoryForm = () => {
     const { error, isPending, isSuccess, mutate } = usePostCategoryMutation();
@@ -122,6 +123,7 @@ export const AddCategoryForm = () => {
     return (
         <div>
             <form>
+                <InputLabel className={styles.inputLabel}>Name:</InputLabel>
                 <Input
                     inputRef={inputElement}
                     placeholder="Name of the category..."
