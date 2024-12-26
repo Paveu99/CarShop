@@ -19,8 +19,6 @@ export const EditCategoryForm = () => {
         setOpen(!open);
     };
 
-    const [successMessage, setSuccessMessage] = useState<string | null>(null);
-
     const { isSuccess, mutate, isPending, error } = useDeleteCategoryMutation();
     const { chosenCategory, setChosenCategory } = useCategoryContext();
     const { data } = useGetCategoryElementsQuery(chosenCategory?.identifier as string);
