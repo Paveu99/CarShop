@@ -8,7 +8,7 @@ export const CategoriesBasePage = () => {
 
     const [chosenPage, setChosenPage] = useState<string>('category');
 
-    return <div className={styles.categoriesContainer}>
+    return <main className={styles.categoriesContainer}>
         <SwitchComponent changeView={setChosenPage} chosenPage={chosenPage} />
         <div className={styles.container}>
             {
@@ -17,5 +17,5 @@ export const CategoriesBasePage = () => {
                     <ElementPage />
             }
         </div>
-    </div>
+    </main>
 }
