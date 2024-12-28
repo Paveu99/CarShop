@@ -15,7 +15,7 @@ import { useElementContext } from '../../../../context/useElementContext';
 import { useGetCategoriesQuery } from '../../../../queries/categories/useGetCategoriesQuery';
 import { useEditElementMutation } from '../../../../queries/elements/useEditElementMutation';
 import { Element } from '../../../../utils/types';
-import { useDeleteElementMutation } from '../../../../queries/elements/useDeleteMutation';
+import { useDeleteElementMutation } from '../../../../queries/elements/useDeleteElementMutation';
 import styles from './styles.module.scss'
 
 export const EditElementForm = () => {

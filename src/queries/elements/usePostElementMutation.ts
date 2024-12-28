@@ -11,9 +11,9 @@ export const usePostElementMutation = () => {
         mutationFn: async (payload: ElementDto) => {
             return apiPost<Element, ElementDto>(`parts`, payload)
         },
-        onSuccess: (newTeam) => {
-            queryClient.setQueryData<Element[]>(["elements"], (oldTeams) => {
-                return [...(oldTeams || []), newTeam]
+        onSuccess: (newPart) => {
+            queryClient.setQueryData<Element[]>(["elements"], (oldParts) => {
+                return [...(oldParts || []), newPart]
             })
         },
     })

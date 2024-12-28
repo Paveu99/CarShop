@@ -25,3 +25,20 @@ export type ElementDto = {
     partId: string,
     category: string
 }
+
+export type Summary = {
+    id: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    value: number,
+    details: string
+}
+
+export type SummaryDto = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    value: number,
+    details: string
+}
