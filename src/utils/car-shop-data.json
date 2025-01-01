@@ -274,6 +274,13 @@
       "name": "Test another",
       "price": 123,
       "partId": "test-another"
+    },
+    {
+      "id": "bb2d",
+      "category": "test value",
+      "name": "Test value for test",
+      "price": 1000,
+      "partId": "test-value-for-test"
     }
   ],
   "orders": [
