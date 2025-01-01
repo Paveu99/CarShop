@@ -11,9 +11,10 @@ import { useGetSummariesQuery } from "../../queries/summary/useGetSummariesQuery
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useDecryptOrder } from "../../hooks/useDecryptOrder";
 import { SingleOrder } from "./single order";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const HistoryBasePage = () => {
-    const { data: orders } = useGetSummariesQuery();
+    const { data: orders } = useSuspenseQuery(useGetSummariesQuery);
     const [details, setDetails] = useState<string[]>([]);
     const { test, isLoading } = useDecryptOrder(details);
     const [openItemId, setOpenItemId] = useState<string | null>(null);
