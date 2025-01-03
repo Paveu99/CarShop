@@ -8,7 +8,6 @@ import { SingleStepForm } from '../../../components/creator';
 import { useGetOptions } from '../../../queries/categories/useGetOptions';
 import { useGetElementsOptions } from '../../../queries/elements/useGetElementsOptions';
 
-// Typ danych zwracanych przez loader
 interface LoaderData {
   availableIds: string[];
 }
@@ -24,6 +23,7 @@ const IdRouteElement = () => {
     <SingleStepForm
       data={data}
       name={id}
+      ids={availableIds}
       first={availableIds[0] === id}
     />
   );
@@ -49,7 +49,7 @@ export const Route = createFileRoute('/_wrapper/creator/$id')({
         )
         .map((option) => option.identifier) || [];
 
-    if (![...availableIds, 'summary'].includes(id)) {
+    if (![...availableIds].includes(id)) {
       return redirect({ to: '/creator' });
     }
 
