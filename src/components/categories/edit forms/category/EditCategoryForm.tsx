@@ -9,11 +9,15 @@ import { useDeleteCategoryMutation } from "../../../../queries/categories/useDel
 import styles from './styles.module.scss';
 import clsx from 'clsx';
 import infoPng from '../../../../images/info.png';
+import { useOrderStore } from "../../../../store/useOrderStore";
+import { useShallow } from "zustand/shallow";
+import { useGetCategoriesQuery } from "../../../../queries/categories/useGetCategoriesQuery";
 
 export const EditCategoryForm = () => {
 
     const [open, setOpen] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState<boolean>(false);
+    const { validateCategories } = useOrderStore(useShallow(state => ({ validateCategories: state.validateCategories })));
 
     const handleClick = () => {
         setOpen(!open);
@@ -21,6 +25,7 @@ export const EditCategoryForm = () => {
 
     const { isSuccess, mutate, isPending, error } = useDeleteCategoryMutation();
     const { chosenCategory, setChosenCategory } = useCategoryContext();
+    const { refetch } = useGetCategoriesQuery();
     const { data } = useGetCategoryElementsQuery(chosenCategory?.identifier as string);
     const { handleSubmit } = useForm<Category>();
 
@@ -36,10 +41,19 @@ export const EditCategoryForm = () => {
     };
 
     useEffect(() => {
-        if (isSuccess && chosenCategory) {
-            setChosenCategory(null);
-        }
-    }, [isSuccess, chosenCategory, setChosenCategory]);
+        const fetchAndValidate = async () => {
+            if (isSuccess && chosenCategory) {
+                setChosenCategory(null);
+                const { data } = await refetch();
+                if (data) {
+                    validateCategories(data);
+                }
+            }
+        };
+
+        fetchAndValidate();
+    }, [isSuccess, chosenCategory, setChosenCategory, refetch, validateCategories]);
+
 
     const grey = {
         50: '#F3F6F9',

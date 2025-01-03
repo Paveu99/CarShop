@@ -37,9 +37,9 @@
       "position": 6
     },
     {
-      "id": "1eb0",
-      "identifier": "test value",
-      "name": "Test value",
+      "id": "db3c",
+      "identifier": "testcat",
+      "name": "testcat",
       "position": 7
     }
   ],
@@ -262,18 +262,18 @@
       "partId": "another-test"
     },
     {
-      "id": "b7ca",
-      "category": "basic",
-      "name": "Lorem",
-      "price": 12,
-      "partId": "lorem"
-    },
-    {
       "id": "101c",
       "category": "",
       "name": "Test another",
       "price": 123,
       "partId": "test-another"
+    },
+    {
+      "id": "bb2d",
+      "category": "basic",
+      "name": "Test value for test",
+      "price": 1000,
+      "partId": "test-value-for-test"
     }
   ],
   "orders": [
@@ -364,6 +364,22 @@
       "email": "ivy.martinez@example.com",
       "value": 2300,
       "details": "leather-seats, alloy-wheels"
+    },
+    {
+      "id": "0ab1",
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@gmail.pl",
+      "details": "alloy-wheels,basic-sound-system,test-value-for-test,adaptive-cruise-control,test-element,memory-foam-seats,acoustic-windshield,blind-spot-monitor,lane-keeping-assist,high-performance-brakes,performance-exhaust,wireless-charging,head-up-display",
+      "value": 17610
+    },
+    {
+      "id": "62b5",
+      "firstName": "Pawel",
+      "lastName": "Jarecki",
+      "email": "pawel.jarecki@gmail.com",
+      "details": "lorem,test-value-for-test,panoramic-roof,adaptive-cruise-control,test-element,memory-foam-seats,acoustic-windshield,backup-camera,lane-keeping-assist,high-performance-brakes,performance-exhaust,smartphone-integration,wireless-charging,head-up-display,360-degree-camera",
+      "value": 21322
     }
   ]
 }

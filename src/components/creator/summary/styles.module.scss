@@ -1,0 +1,18 @@
+.inputLabel {
+    padding: 15px;
+    background-color: #1976d2;
+    border-radius: 5px;
+    width: 150px;
+    margin-top: 5px;
+}
+
+.infoButton {
+    height: 18px;
+    width: 18px;
+}
+
+.container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

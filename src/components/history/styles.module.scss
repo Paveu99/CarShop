@@ -20,37 +20,3 @@
     box-sizing: border-box;
     text-align: left;
 }
-
-.collapseContent {
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 16px;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.collapseContent p {
-    margin: 8px 0;
-    color: #333;
-    font-size: 14px;
-}
-
-.collapseContent ul {
-    list-style: circle;
-}
-
-.collapseContent ul li {
-    margin: 4px 0;
-    font-size: 14px;
-    color: #555;
-}
-
-.collapseContent ul li strong {
-    color: #1976d2;
-}
-
-.collapseContent p span {
-    font-weight: bold;
-    color: #1976d2;
-}

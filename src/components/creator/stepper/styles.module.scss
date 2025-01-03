@@ -1,0 +1,29 @@
+.stepper {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.step {
+    display: flex;
+    width: 150px;
+    height: 20px;
+    background-color: #881c1c;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    &.active {
+        background-color: red
+    }
+
+    &:hover {
+        background-color: #881c1cbe;
+    }
+}

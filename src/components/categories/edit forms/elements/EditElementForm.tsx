@@ -17,10 +17,15 @@ import { useEditElementMutation } from '../../../../queries/elements/useEditElem
 import { Element } from '../../../../utils/types';
 import { useDeleteElementMutation } from '../../../../queries/elements/useDeleteElementMutation';
 import styles from './styles.module.scss'
+import { useGetElementsQuery } from '../../../../queries/elements/useGetElementsQuery';
+import { useOrderStore } from '../../../../store/useOrderStore';
+import { useShallow } from 'zustand/shallow';
 
 export const EditElementForm = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+    const { validateParts } = useOrderStore(useShallow(state => ({ validateParts: state.validateParts })));
+
 
     const inputRef = useRef<HTMLSelectElement | null>(null);
     const [different, setDifferent] = useState<boolean>(false);
@@ -31,6 +36,7 @@ export const EditElementForm = () => {
     const { mutate: deletePart } = useDeleteElementMutation();
     const { chosenElement, setChosenElement } = useElementContext();
     const { data: categories } = useGetCategoriesQuery();
+    const { refetch } = useGetElementsQuery();
 
     const {
         register,
@@ -53,21 +59,24 @@ export const EditElementForm = () => {
         setValue('category', capitilizedCategory);
     }, [capitilizedCategory, setValue, chosenElement]);
 
-    const onDelete = () => {
+    const onDelete = async () => {
         if (!chosenElement) return;
 
         deletePart(chosenElement.id, {
-            onSuccess: () => {
+            onSuccess: async () => {
                 setChosenElement(null);
                 setOpenModal(false);
-            }
+
+                const { data: elements } = await refetch();
+                if (elements) {
+                    validateParts(elements);
+                }
+            },
         });
     };
 
-    const onSubmit = (data: Partial<Element>) => {
-        if (!chosenElement) {
-            return;
-        }
+    const onSubmit = async (data: Partial<Element>) => {
+        if (!chosenElement) return;
 
         const updatedElement: Element = {
             ...chosenElement,
@@ -75,7 +84,7 @@ export const EditElementForm = () => {
         };
 
         mutate(updatedElement, {
-            onSuccess: () => {
+            onSuccess: async () => {
                 setChosenElement(updatedElement);
                 setOpenModal(false);
                 setSuccessMessage("Successfully added!");
@@ -84,11 +93,16 @@ export const EditElementForm = () => {
                     setSuccessMessage(null);
                 }, 2000);
 
+                const { data: elements } = await refetch();
+                if (elements) {
+                    validateParts(elements);
+                }
+
                 return () => clearTimeout(timer);
-            }
-        }
-        );
+            },
+        });
     };
+
 
     const selectedCategory = watch('category');
     useEffect(() => {
