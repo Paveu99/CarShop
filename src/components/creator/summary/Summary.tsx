@@ -20,7 +20,7 @@ export const Summary = () => {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<SummaryDto>({
+    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<SummaryDto>({
         mode: "onChange",
         defaultValues: {
             details: Object.values(selectedParts).flat().map(part => part.partId).join(','),
@@ -210,6 +210,16 @@ export const Summary = () => {
                     onClick={handleOpen}
                 >
                     Order
+                </Button>
+                <Button
+                    color={"error"}
+                    style={{ margin: "5px 0 0 5px" }}
+                    type="button"
+                    variant="contained"
+                    disableElevation
+                    onClick={() => reset()}
+                >
+                    Cancel
                 </Button>
                 <Modal
                     open={open}
