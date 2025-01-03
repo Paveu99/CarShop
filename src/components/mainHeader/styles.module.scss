@@ -1,0 +1,15 @@
+.shopNameContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.name {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+
+    &:hover {
+        color: rgba(0, 0, 0, 0.5);
+    }
+}
