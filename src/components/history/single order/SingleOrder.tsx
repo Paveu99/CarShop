@@ -23,7 +23,7 @@ export const SingleOrder = ({ el, isLoading, test }: Props) => {
                     </div> :
                     <ul>
                         {test?.map(el => (
-                            <li key={el.id}><b>{el.name}</b> - {el.category.charAt(0).toUpperCase() + el.category.slice(0)} - {el.price}$</li>
+                            <li key={el.id}><b>{el.name}</b> - {el.category.charAt(0).toUpperCase() + el.category.slice(1)} - {el.price}$</li>
                         ))}
                     </ul>
             }

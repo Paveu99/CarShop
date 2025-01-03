@@ -4,20 +4,25 @@ import { useState, useEffect } from "react";
 import { Sum } from "../sum/Sum";
 import { useOrderStore } from "../../../store/useOrderStore";
 import { useShallow } from "zustand/shallow";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { useOrderSuccess } from "../../../hooks/useIsThisStepReached";
 
 type Props = {
     first: boolean;
     data: Element[] | undefined;
     name: string;
+    ids: string[];
 };
 
 type Thing = {
     things: string[];
 };
 
-export const SingleStepForm = ({ data, name, first }: Props) => {
+export const SingleStepForm = ({ data, name, first, ids }: Props) => {
+    useOrderSuccess(name, first, ids);
     const { selectedParts, setOrderData } = useOrderStore(useShallow(state => ({ selectedParts: state.selectedParts, setOrderData: state.setOrderData })));
     const [sum, setSum] = useState<number>(0);
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -70,10 +75,17 @@ export const SingleStepForm = ({ data, name, first }: Props) => {
             parts: selectedItems as Element[],
         };
 
-        console.log(result);
-        console.log("Total sum: ", sum);
-
         setOrderData(result);
+        if (ids[ids.length - 1] === name) {
+            navigate({
+                to: '/creator/summary'
+            })
+        } else {
+            navigate({
+                to: '/creator/$id',
+                params: { id: ids[ids.indexOf(name) + 1] }
+            })
+        }
     };
 
     return (
@@ -82,6 +94,7 @@ export const SingleStepForm = ({ data, name, first }: Props) => {
                 <h2>{name.charAt(0).toUpperCase() + name.slice(1)} category:</h2>
                 <Sum />
             </div>
+            Total in this category: {sum}$
             <form onSubmit={handleSubmit(onSubmit)}>
                 {data?.map((element) => (
                     <div key={element.partId}>
@@ -100,10 +113,10 @@ export const SingleStepForm = ({ data, name, first }: Props) => {
                         </label>
                     </div>
                 ))}
-                {!first ? <button type="submit">Previous</button> : ''}
-                <button type="submit" disabled={!isValid}>Next</button>
+                {!first ? <button type="button"><Link style={{ textDecoration: 'none', color: 'black' }} to='/creator/$id' params={{ id: ids[ids.indexOf(name) - 1] }}>Previous</Link></button> : ''}
+                <button type="submit" disabled={!isValid}>Approve elements and go next</button>
             </form>
             {errors.things && <p>{errors.things.message}</p>}
-        </div>
+        </div >
     );
 };
