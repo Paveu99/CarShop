@@ -380,6 +380,14 @@
       "email": "pawel.jarecki@gmail.com",
       "details": "lorem,test-value-for-test,panoramic-roof,adaptive-cruise-control,test-element,memory-foam-seats,acoustic-windshield,backup-camera,lane-keeping-assist,high-performance-brakes,performance-exhaust,smartphone-integration,wireless-charging,head-up-display,360-degree-camera",
       "value": 21322
+    },
+    {
+      "id": "57e8",
+      "firstName": "Test",
+      "lastName": "Test",
+      "email": "Test@gmail.com",
+      "details": "alloy-wheels,basic-sound-system,smart-navigation,test-element,dual-zone-climate,acoustic-windshield,emergency-braking-system,high-performance-brakes,head-up-display",
+      "value": 13210
     }
   ]
 }
