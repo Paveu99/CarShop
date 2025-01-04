@@ -238,7 +238,7 @@ export const Summary = () => {
                             Confirmation!!!
                         </h2>
                         <p id="unstyled-modal-description" className="modal-description">
-                            Dear <b style={{ fontSize: '18px' }}>{inputElement1.current?.value} {inputElement2.current?.value}</b> are you sure that you want to add as a category?
+                            Dear <b style={{ fontSize: '18px' }}>{inputElement1.current?.value} {inputElement2.current?.value}</b> are you sure that you want to place this order?
                         </p>
                         <div style={{ marginTop: "5px", display: 'flex', justifyContent: 'center', width: '100%', gap: '10px' }}>
                             <Button
