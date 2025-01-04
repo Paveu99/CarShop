@@ -28,7 +28,7 @@
 
 # Demo
 Here is a demonstration how it works:
-- Desktop: TO-CHANGE
+- Desktop: https://youtu.be/kJbhitIP0X8
 
 To run the application, follow these steps:
 
